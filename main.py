@@ -613,3 +613,134 @@ print(res(3))
 
 soma = lambda x, y: x + y
 print(soma(3, 5))
+
+# Aula prática 5 e manipulação de arquivos
+
+* Arquivos
+	Abrir arquivo: open()
+	Fechar arquivo: arquivo.close()
+* Ler arquivo: 
+	arquivo.read()
+	arquivo.readlines()
+* Escrever no arquivo: 
+	arquivo.write()	
+-------------------------------------------------------
+# MODO |                   OPERAÇÕES 		            	-
+#  r   | Leitura                                      -
+#  w   | Escrita, apaga o conteudo se existir         -
+#  a   | Escrita, mas preserva o conteúdo se existir  -
+#  b   | Modo binário                                 -
+#  +   | Atualização (leitura e escrita)              -
+-------------------------------------------------------
+
+Interactive help ---> help() e para sair quit 
+Serve para ajudar no código, explicando uma função e/ou features que ela possui.
+
+def soma(x=0,y=0,z=0):
+	return x,y,z
+"""
+:param x: valor inteiro opcional
+:param y: valor inteiro opcional
+"""
+print(soma(3,2))
+help(soma)
+
+# Exercício 1 - 
+
+def valida_int(pergunta, min, max):
+	x = int(input(pergunta))
+	while ((x < min) or (x > max)):
+		x = int(input(pergunta))
+	return x
+	
+
+def fatorial(num):
+	fat = 1 
+	if num == 0:
+		return fat 
+	for i in range(1,num+1, 1):
+		fat *= i 
+	return fat
+
+x = valida_int('Digite um valor para calcular a fatorial: ', 0, 99999)
+print('{}! = {}'.format(x,fatorial(x)))
+
+
+# Exercício 2 - 
+
+def valida_int(pergunta, min_value, max_value):
+    x = int(input(pergunta))
+    while ((x < min_value) or (x > max_value)):
+        x = int(input(pergunta))
+    return x
+
+def criaArquivo(nomeArquivo):
+    try:
+        a = open(nomeArquivo, 'wt+')  # Escreve texto e cria caso não exista
+        a.close()
+    except:
+        print('Erro na criação do arquivo')
+    else:
+        print('Arquivo {} foi criado com sucesso!\n'.format(nomeArquivo))
+
+def existeArquivo(nomeArquivo):
+    try:
+        a = open(nomeArquivo, 'rt')
+        a.close()
+    except FileNotFoundError:
+        return False
+    else:
+        return True
+
+def cadastrarJogo(nomeArquivo, nomeJogo, nomeVideogame):
+    try: 
+        a = open(nomeArquivo, 'at')
+    except:
+        print('Erro ao abrir arquivo')
+    else: 
+        a.write('{};{}\n'.format(nomeJogo, nomeVideogame))
+    finally:
+        a.close()
+
+def listarArquivo(nomeArquivo):
+    try:
+        a = open(nomeArquivo, 'rt')
+    except:
+        print('Erro ao ler arquivo')
+    else:
+        print(a.read())
+    finally:
+        a.close()
+
+
+arquivo = 'games.txt'
+if existeArquivo(arquivo):
+    print('Arquivo localizado no computador')
+else:
+    print('Arquivo inexistente')
+    criaArquivo(arquivo)
+
+while True:
+    print('Menu')
+    print('1 - Cadastrar novo item')
+    print('2 - Listar cadastros')
+    print('3 - Sair')
+
+    op = valida_int('Escolha a opção desejada: ', 1, 3)
+    if op == 1:
+        print('Opção de cadastrar novo item selecionado...\n')
+        nomeJogo = input('Nome do jogo: ')
+        nomeVideogame = input('Nome do videogame: ')
+        cadastrarJogo(arquivo, nomeJogo, nomeVideogame)
+    elif op == 2:
+        print('Opção de listar selecionada...')
+        listarArquivo(arquivo)
+    elif op == 3:
+        print('Encerrando o programa')
+        break
+
+
+
+
+
+
