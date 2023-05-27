@@ -740,7 +740,208 @@ while True:
         break
 
 
+# Tuplas, listas, dicionários e strings: 
+
+Variáveis simples: Armazena um item somente.
+Variáveis compostas: Armazena múltiplus dados. 
+
+Variável[0], Variável[1], Variável[2], Variável[3]
+
+Estrutura de dados é um conjunto de dados organizados de maneira específica na memória.
+
+# Tupla
+
+* Estrutura de dados
+* A tupla é imutável
+* Representada em Python por parênteses
+
+mochila = ('Machado','Camisa', 'Bacon', 'Abacate')
+print(mochila[0:2]) # Output - ('Machado', 'Camisa')
+
+mochila[2] = 'Ovos' = TypeError - Não podemos alterar.
+
+for item in mochila: 
+	print('Na minha mochila tem {}'.format(item))
+
+Com range: 
+	
+tam = len(mochila)
+for i in range (0, tam, 1):
+	print('Na minha mochila tem {}'.format(mochila[i]))
+	
+Não podemos alterar a estrutura, mas podemos somar, por meio da manipulação de variáveis. 
+
+mochila = ('Machado','Camisa', 'Bacon', 'Abacate')
+upgrade = ('Queijo','Canivete')
+mochila_grande = mochila + upgrade
+
+print(mochila_grande)
+
+# Desempacotamento de parâmetros em funções
+
+* O simbolo '*' simboliza desempacotamento.
+
+def soma(*num):
+	soma = 0 
+	print('Tupla: {}'.format(num))
+	for i in num:
+		soma += i
+	return soma
+
+print('Resultado: {}\n'.format(soma(1,2)))
+print('Resultado: {}\n'.format(soma(1,2,3,4,5,6,7,8,9)))
+
+# Listas
+
+* Estrutura de dados dinâmica
+* Podemos alterar dados e tamanho 
+* Indexadas por valores numéricos inteiros
+* Representadas em Python por colchetes []
+
+mochila = ['Machado','Camisa', 'Bacon', 'Abacate']
+print('Lista:', mochila)
+
+* Podemos alterar:
+	
+mochila = ['Machado','Camisa', 'Bacon', 'Abacate']
+print('Lista:', mochila)
+
+mochila[2] = 'Laranja'
+print('Lista:', mochila)
+
+*Manipulando listas: 
+
+mochila.append('Ovos') # Acrescenta um item ao final da lista
+print('Lista', mochila)
+
+mochila.insert(1,'Canivete') # Acrescenta um item em uma posição específica da lista
+print('Lista', mochila)	
+
+del mochila[1] # Remove um item de acordo com a posição no índice
+print('Lista:', mochila)
+
+mochila.remove('Ovos') # Remove um item da lista pelo nome
+print('Lista: ', mochila)
+
+* Cópia de listas: 
+
+x = [5,7,9,11] #Copia variável 
+y = x
+
+print(x)
+print(y)
+
+--
+
+x = [5,7,9,11]  #Se alterarmos a cópia(y), alteramos a original(x)
+y = x
+
+print(x)
+print(y)
+
+y[0] = 10
+print(x)
+print(y)
+
+* Desta forma criamos uma cópia na memoria, podendo alterar a cópia -->
+
+x = [5,7,9,11]
+y = x[:]
+
+print(x)
+print(y)
+
+y[0] = 50
+print(y)
+
+* A lista é considera um objeto, portanto POO
+
+*Método é equivalente à função:
+	
+mochila.append('Ovos')
+variável.função(parâmetro)
+
+# Strings e listas dentro de listas: 
+
+*Dupla indexação
+
+mochila = ['Machado','Camisa', 'Bacon', 'Abacate']
+mochila[0][0] # Acessa primeiro o item do indice e depois o length da string. Portanto = mochila[0][0] == M
+
+Com range 
+
+mochila = ['Machado','Camisa', 'Bacon', 'Abacate']
+for item in mochila: 
+	for letra in item:
+		print(letra, end='')
+	print()
+
+Sem range
+
+mochila = ['Machado','Camisa', 'Bacon', 'Abacate']
+for i in range(0,len,(mochila),1): 
+	for j in range(0,len,(mochila[i],1)):
+		print(mochila[i][j], end='')
+	print()
+
+* Listas dentro de listas: 
+	
+mochila = [['Cebola', 0,39],['Tomate, 0.49],['Maça', 0,89]]
+--
+			     
 
 
+item = []
+mercado = []			     
 
+for i in range(3):
+	item.append(input('Digite o nome do item: '))
+	item.append(int(input('Digite a quantidade:')))
+	item.append(float(input('Digite o valor: ')))
+	mercado.append(item[:])
+	item.clear() # Limpa a seleção anterior depois de estar armazenada, evitando que o item apareça novamente. 
+print(mercado)     
+			    
+Output --> [['Cebola', 10, 0.69], ['Tomate', 5, 0.79], ['Abacate', 5, 1.25]]
+			     
+* Forma simplificada: 
+			     
+ mercado = []			     
+
+for i in range(3):
+	nome = (input('Digite o nome do item: '))
+	qtd = (int(input('Digite a quantidade:')))
+	valor = (float(input('Digite o valor: ')))
+	mercado.append([nome, qtd, valor])
+print(mercado)
+
+--
+			     
+mercado = []			     
+
+for i in range(3):
+	nome = (input('Digite o nome do item: '))
+	qtd = (int(input('Digite a quantidade:')))
+	valor = (float(input('Digite o valor: ')))
+	mercado.append([nome, qtd, valor])
+print(mercado)
+
+soma = 0
+
+print('Lista de compras')
+print('-' * 20)
+print('Item | Quantidade | Valor unitário | Total do item')
+
+for item in mercado:
+	print('{} |{}| {} |{}'.format(item[0], item[1], item[2], item[1] * item[2]))
+	soma += item[1] * item[2]
+print('-' * 20)
+print('Total a ser pago {}'.format(soma))
+			     
+# Dicionários: 
+			     
+* Estrutura de dados dinâmica
+* Podemos alterar dados e tamanho 
+* Indexados por chaves
+* Representadas em Python por chaves {}
 
