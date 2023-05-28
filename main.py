@@ -944,4 +944,168 @@ print('Total a ser pago {}'.format(soma))
 * Podemos alterar dados e tamanho 
 * Indexados por chaves
 * Representadas em Python por chaves {}
+	
+							 
+# O item antes do : é o index e após o : é o dado							 
 
+game = {'nome': 'Super Mario',
+			 'desenvolvedora': 'Nintendo',
+			 'ano':1990}
+
+print(game)
+
+print(game['nome'])
+print(game['desenvolvedora'])
+print(game['ano'])
+							 
+*	values: obtém somente os dados 						 
+*	keys: obtém somente as chaves					 
+*	items: obtém o par chave:dado		
+							 
+print(game.values()) --> Imprime somente os valores do dicionário.
+	Output - dict_values(['Super Mario', 'Nintendo', 1990])
+							 
+for i in game.values():							 
+	print(i)						 
+	Output - Super Mario
+			 Nintendo
+			 1990		
+							 
+print(game.keys()) --> 	Imprime somente as chaves do dicionário.						 
+	Output - dict_keys(['nome', 'desenvolvedora', 'ano'])						 
+							 
+for i in game.keys():							 
+	print(i)							 
+	Output - nome
+			 desenvolvedora
+			 ano
+
+print(game.items()) --> 	Imprime o par chave:dado.						 
+	Output - dict_items([('nome', 'Super Mario'), ('desenvolvedora', 'Nintendo'), ('ano', 1990)])					 
+							 
+for i,j in game.items():
+	print('{} = {}'.format(i,j))						 
+	Output - nome = Super Mario
+			 desenvolvedora = Nintendo
+			 ano = 1990					 
+							 
+# Dicionário dentro de lista
+							 
+games = []
+
+game1 = {'nome': 'Super Mario',
+			 'desenvolvedora': 'Nintendo',
+			 'ano':1990}
+game2 = {'nome': 'Zelda Ocarina of Time',
+			 'desenvolvedora': 'Nintendo 64',
+			 'ano':1998}
+game3 = {'nome': 'Pokemon Yellow',
+			 'desenvolvedora': 'Nintendo Game Boy',
+			 'ano':1999}
+
+
+games = [game1, game2, game3]	
+print(games)
+							 
+--	
+* Adicionando os dados pelo teclado e for aninhados 1º for anda na lista 2º for anda no dicionário. 							 
+							 
+game = {}
+games = []
+
+for i in range(3):
+	game['nome'] = input('Qual o nome do jogo?')
+	game['videogame'] = input('Para qual video-game ele foi lançado?')
+	game['ano'] = input('Qual o ano de lançamento?')
+	games.append(game.copy())
+print('-' * 20)
+for e in games:
+	for i, j in e.items():
+		print('O campo {} tem valor {}.'.format(i,j))	
+							 
+# Dicionário com listas dentro:
+							 
+games = {'nome':['Super Mario','Zelda Ocarina of Time','Pokemon Yellow'],
+			'videogame': ['Super Nintendo', 'Nintendo 64', 'Nintendo Game Boy'],
+			'ano': [1990,1998,1999]}
+print(games)							 
+
+--							 
+* Adicionando os dados com entradas no teclado e estrutura de repetição em for. 
+							 
+games = {'nome':[],'videogame':[], 'ano':[]}
+for i in range(3):
+	nome = input('Qual o nome do jogo? ')
+	videogame = input('Qual o nome do video-game?')
+	ano = input('Qual o ano de lançamento?')
+	games['nome'].append(nome)
+	games['videogame'].append(videogame)
+	games['ano'].append(ano)
+print('-' * 20)
+print(games)	
+							 
+# Trabalhando com métodos em strings:
+							 
+* Uma string é imutável
+* Só pode ser alterada se estiver numa lista
+							 
+s1 = 'Algorítmos'
+print(s1)
+s1[0] = 'a'		# Dá erro pois não permite alterações.
+							 
+
+s1 = list('Algorítmos') # Se transformarmos a string em lista conseguimos alterar
+print(s1)
+print(''.join(s1))
+s1[0] = 'a'
+print(''.join(s1))							 
+							 
+
+s1 = 'Lógica de Programação e Algoritmos'
+s1.startswith('Lógica')
+
+s1 = 'Lógica de Programação e Algoritmos'
+s1.endswith('Algoritmos')
+
+s1 = 'Lógica de Programação e Algoritmos'
+s1.endswith('algoritmos')
+
+s1 = 'Lógica de Programação e Algoritmos'
+s1.lower().endswith('algoritmos')
+
+s1 = 'Lógica de Programação e Algoritmos'
+print(s1.upper())
+print(s1.lower())		
+							 
+s1 = 'Lógica de Programação e Algoritmos'
+s1.count('a')
+
+# Quebrando strings:
+							 
+s1 = 'Lógica de Programação e Algoritmos'
+s1.split(' ')		
+							 
+# Substituindo strings:							 
+							 
+s1 = 'Lógica de Programação e Algoritmos'
+s1.replace('Lógica', 'Lógico')		
+							 
+# Validando tipos de dados: 
+							 
+s1 = 'Lógica de programação e Algoritmos'
+s2 = '42'
+
+print(s1.isalnum) #False  
+print(s2.isalnum) #True		
+							 
+s1 = 'Lógica de programação e Algoritmos'
+s2 = '42'
+
+print(s1.isalpha) #False  
+print(s2.isalpha) #False							 
+
+s1 = 'LógicadeprogramaçãoeAlgoritmos'
+s2 = '42'
+
+print(s1.isalpha) #True  
+print(s2.isalpha) #False							 
